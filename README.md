@@ -2,7 +2,7 @@
 
 ## Table of Contents:
 * Review
-    * (Intro to Full Stack)[Review/Intro\%20to\%20Full\%Stack.md]
+    * [Intro to Full Stack](Review/Intro\%20to\%20Full\%Stack.md)
     * A JavaScript Refresher
     * React
 * Introduction to Node and Express
