@@ -1,0 +1,2 @@
+## Feedback, have something to share with us? We want to hear it!
+At HackerYou we believe that everybody can have a great idea that can have big impact from the smallest tweak to a major update. We also know that sometime there might be something that we need to know to improve or fix something. We invite everybody attending a course, workshop event or who works for HackerYou to tell us whatever you need to whenever you have something to share. You can email feedback@hackeryou.com at any time with an idea, suggestion, complaint, comment or cheer. We want to hear from you.
