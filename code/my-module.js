@@ -1,5 +1,5 @@
 
-const sentencer = require('sentencer');
+const sentencer = require('phraseit');
 const os = require('os');
 
 exports.generateSentence = () => {
