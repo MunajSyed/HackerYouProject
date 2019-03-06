@@ -1,1 +1,5 @@
-# con-ed-full-stack-student-notes-
+# Day Two
+
+## Outline
+
+## Resources
