@@ -1,6 +1,4 @@
-# Example 2
-
-## HTTP
+# HTTP
 [Resource](http://www.ntu.edu.sg/home/ehchua/programming/webprogramming/http_basics.html): These are some pretty technical docs on the basics of HTTP.
 
 ## HTTP Request Structure
@@ -35,7 +33,10 @@
   > https://httpstatuses.com/
 
 * **Headers** -
+  > https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+
 * **Body** -
+  > https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages
 
 ## Exercises
 
