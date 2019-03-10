@@ -4,7 +4,9 @@
 > Create an express app to serve `/api/users` using an `express.Router` instance.
 
 > GET `/api/users`: returns list of al users
+
 > GET `/api/users/:id`: returns a single user
+
 > POST `/api/users`: creates a user
 
   Payload Structure
