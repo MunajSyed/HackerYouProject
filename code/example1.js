@@ -8,5 +8,5 @@ const app = express();
 
 // 3. Start application
 app.listen(5000, () => {
-  console.log('app is running...');
+  console.log('Ex1 is running...');
 });
