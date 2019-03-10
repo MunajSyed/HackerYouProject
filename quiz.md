@@ -50,7 +50,16 @@ app.listen(6000, () => {
 
 
 ## Question 2
-> Version the above API and change the value `name` to `firstName`.
+> Version the above API to handle requests from `/api/v1/users` and `/api/v2/users`. Version 2 of the API should send back the following:
+
+```json
+{
+  "id": "ac99815f-1d56-4ab4-8630-a31045f61401",
+  "firstName": "Bailey"
+}
+```
+
+##### The challenge is to support both API versions
 
 ```javascript
 'use strict';
