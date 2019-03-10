@@ -144,3 +144,28 @@ app.listen(6000, () => {
   console.log('app running...');
 });
 ```
+
+### Exercise 5 - Serve HTML Files
+```javascript
+'use strict';
+
+// 1. Require express package
+const express = require('express');
+
+// 2. Instantiate express "app"
+const app = express();
+
+// 3. Create `public/` folder
+
+// 4. Define some sane options
+const options = {
+
+};
+
+// 5. Add static middleware
+app.use(express.static('public', options));
+
+app.listen(6000, () => {
+  console.log('app running...');
+});
+```
