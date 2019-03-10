@@ -6,7 +6,7 @@ const app = express();
 // 1. Add simple GET request route handler
 //
 // - IF our express instance gets a request
-// - AND that request has a `path` property which matechs '/html'
+// - AND that request has a `path` property which matches '/html'
 // - AND that request has a `method` property which is 'GET'
 // - THEN execute the defined callback
 app.get('/html', (req, res) => {
@@ -20,7 +20,7 @@ app.get('/html', (req, res) => {
 // 3. Add simple GET request route handler
 //
 // - IF our express instance gets a request
-// - AND that request has a `path` property which matechs '/json'
+// - AND that request has a `path` property which matches '/json'
 // - AND that request has a `method` property which is 'GET'
 // - THEN execute the defined callback
 app.get('/json', (req, res) => {
@@ -34,7 +34,7 @@ app.get('/json', (req, res) => {
 // 5. Add simple GET request route handler
 //
 // - IF our express instance gets a request
-// - AND that request has a `path` property which matechs '/custom'
+// - AND that request has a `path` property which matches '/custom'
 // - AND that request has a `method` property which is 'GET'
 // - THEN execute the defined callback
 app.get('/custom', (req, res) => {
