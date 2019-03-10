@@ -18,7 +18,7 @@
 ## Resources
 
 #### Docs
-- [Express Docs](https://expressjs.com/)
+- [Express Docs](https://expressjs.com/en/4x/api.html)
 
 #### Blog Posts
 - [Project Setup](https://itnext.io/production-ready-node-js-rest-apis-setup-using-typescript-postgresql-and-redis-a9525871407): Project structure [Express, TypeScript]
