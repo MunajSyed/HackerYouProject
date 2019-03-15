@@ -1,1 +1,5 @@
-# con-ed-full-stack-student-notes-
+# Day {number}
+
+## Outline
+
+## Resources
