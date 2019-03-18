@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component, Fragment } from 'react';
 
 import {
   Card,
@@ -10,21 +8,15 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const styles = {
-  card: {
-    minWidth: 275,
-  },
-};
-
-class Pokemon extends Component {
+export default class Pokemon extends Component {
   state = {
     base_exp: null,
     stats: []
   };
 
   componentDidMount() {
-    const { url } = this.props;
-    fetch(url)
+    const url = 'https://pokeapi.co/api/v2';
+    fetch(`${url}/pokemon/${this.props.name}`)
       .then((res) => res.json())
       .then((data) => {
         const currentState = this.state;
@@ -44,15 +36,15 @@ class Pokemon extends Component {
   }
 
   render() {
-    const { classes, name } = this.props;
+    const { name } = this.props;
     const { base_exp } = this.state;
 
     return (
-      <Card className={classes.card}>
+      <Card>
         <CardHeader
           avatar={
             <Avatar>
-              MP
+              {name[0].toUpperCase()}
             </Avatar>
           }
 
@@ -64,7 +56,7 @@ class Pokemon extends Component {
             // all the stats
             this.state.stats.map((stat) => {
               return (
-                <React.Fragment key={stat.url}>
+                <Fragment key={stat.url}>
                   <Typography>
                     {stat.name}
                   </Typography>
@@ -74,7 +66,7 @@ class Pokemon extends Component {
                   <Typography>
                     {stat.url}
                   </Typography>
-                </React.Fragment>
+                </Fragment>
               );
             })
           }
@@ -83,5 +75,3 @@ class Pokemon extends Component {
     )
   }
 }
-
-export default withStyles(styles)(Pokemon);
