@@ -1,5 +1,26 @@
 # Quiz
 
- ## Question 1
+## Question 1
+> Create a route to handle CR[UD] operations for our Stock resource
 
- ## Question 2
+```javascript
+// POST /stocks
+
+// Payload
+{
+  stockSymbol: 'SHOP',
+}
+
+// GET /stocks
+// Response
+{
+  data: [
+    { id: '...', stockSymbol: 'SHOP', userId: '...' },
+    { id: '...', stockSymbol: 'SHOP', userId: '...' },
+    { id: '...', stockSymbol: 'SHOP', userId: '...' },
+    // ...
+  ]
+}
+```
+## Question 2
+> Update the `Placeholder` component to fetch all stocks from our API
