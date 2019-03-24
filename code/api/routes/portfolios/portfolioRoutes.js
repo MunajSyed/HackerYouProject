@@ -5,7 +5,7 @@ const router = express.Router();
 
 const portfolioService = require('./portfolioService');
 
-// GET /portfolios/
+// GET /api/portfolios/
 router.route('/')
   .get(async (req, res, next) => {
     try {
@@ -20,26 +20,22 @@ router.route('/')
       const { body } = req;
       const portfolio = await portfolioService.createPortfolio(body);
       res.status(201).json({
-        data: [portfolio]
+        data: [portfolio],
       });
     } catch (e) {
       next(e);
     }
   });
 
-// router.route('/:portfolioId')
-//   .get(async (req, res, next) => {
-//     try {
-//       res.json({});
-//     } catch (e) {
-//       next(e);
-//     }
-//   });
-
 router.route('/:portfolioId/stocks')
   .get(async (req, res, next) => {
+    const { params } = req;
+    const { portfolioId } = params;
     try {
-      res.json({});
+      const { portfolio, stocks } = await portfolioService.listPortfolioStocks(portfolioId);
+      res.json({
+        data: stocks,
+      });
     } catch (e) {
       next(e);
     }

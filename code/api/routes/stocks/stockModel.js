@@ -3,6 +3,14 @@
 const uuid = require('uuid/v4');
 const _ = require('lodash');
 
+let _store;
+
+const seedData = [
+  { userId: 'me', stockSymbol: 'SHOP' },
+  { userId: 'me', stockSymbol: 'DBX' },
+  { userId: 'me', stockSymbol: 'SBUX' },
+];
+
 class Stock {
   constructor(data) {
     const { id, userId, stockSymbol } = data;
@@ -35,6 +43,11 @@ class Stock {
     }
     return _store.get(id);
   }
+
+
+  static async _seed() {
+    _store = new StockStore(seedData);
+  }
 }
 
 class StockStore {
@@ -60,21 +73,4 @@ class StockStore {
   }
 }
 
-const seedData = [
-  { userId: 'me', stockSymbol: 'SHOP' },
-  { userId: 'me', stockSymbol: 'DBX' },
-  { userId: 'me', stockSymbol: 'SBUX' },
-];
-
-const _store = new StockStore(seedData);
-
 module.exports = Stock;
-
-// async function main() {
-//   console.log(await Stock.find());
-//   const test = new Stock({ userId: 'you', stockSymbol: 'FB' });
-//   const doc = await test.save();
-//   console.log(await Stock.find());
-// }
-
-// main();

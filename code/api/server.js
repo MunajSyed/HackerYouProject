@@ -15,8 +15,8 @@ const middleWare = require('./middleware');
 const errorHandlers = require('./middleware/errorHandlers');
 
 // 4. Require routes
-const { router: bookRoutes } = require('./routes/books/bookRoutes');
 const { router: portfolioRoutes } = require('./routes/portfolios/portfolioRoutes');
+const { router: stockRoutes } = require('./routes/stocks/stockRoutes');
 
 // 5. Require conatants
 const { PORT } = require('./utils/constants');
@@ -25,8 +25,8 @@ const { PORT } = require('./utils/constants');
 applyMiddleware(middleWare, router);
 
 // 7. Utilise routes
-router.use('/api/books', bookRoutes);
-// router.use('/api/portfolios', portfolioRoutes);
+router.use('/api/portfolios', portfolioRoutes);
+router.use('/api/stocks', stockRoutes);
 
 // 8. Apply error handling middleware (meaningfully last)
 applyMiddleware(errorHandlers, router);
@@ -35,10 +35,15 @@ applyMiddleware(errorHandlers, router);
 const server = http.createServer(router);
 
 // 10. Start server
-server.listen(PORT, () => {
-  console.log(`Server is running on PORT:${PORT}`);
-  if (process.send) {
-    // NOTE: process is being run by pm2
-    process.send('ready');
+server.listen(PORT, async () => {
+  try {
+    await require('./seed').seed();
+    console.log(`Server is running on PORT:${PORT}`);
+    if (process.send) {
+      // NOTE: process is being run by pm2
+      process.send('ready');
+    }
+  } catch (e) {
+    throw e;
   }
 });

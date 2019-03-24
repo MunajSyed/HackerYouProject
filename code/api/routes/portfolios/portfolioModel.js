@@ -3,6 +3,14 @@
 const uuid = require('uuid/v4');
 const _ = require('lodash');
 
+let _store;
+
+const seedData = [
+  { id: 'c1abe814-29cd-4877-8fee-d534157473b2', name: 'High Risk', userId: 'me' },
+  { name: 'Low Risk', userId: 'me' },
+  { name: 'Medium Risk', userId: 'me' },
+];
+
 class Portfolio {
   constructor(data) {
     const { id, name, userId } = data;
@@ -46,6 +54,10 @@ class Portfolio {
       throw new Error('missing.param:id');
     }
     return _store.get(id);
+  }
+
+  static async _seed() {
+    _store = new PortfolioStore(seedData);
   }
 }
 
@@ -94,22 +106,4 @@ class PortfolioStore {
   }
 }
 
-const seedData = [
-  { name: 'high-risk', userId: 'me' },
-  { name: 'low-risk', userId: 'me' },
-  { name: 'medium-risk', userId: 'me' },
-];
-
-const _store = new PortfolioStore(seedData);
-
 module.exports = Portfolio;
-
-// async function main () {
-//   console.log(await Portfolio.find());
-//   const test = new Portfolio({ name: 'testing', userId: 'you' });
-//   const doc = await test.save();
-//   console.log('doc:', doc);
-//   console.log(await Portfolio.find());
-// }
-
-// main();
