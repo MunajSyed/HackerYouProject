@@ -23,4 +23,4 @@
 }
 ```
 ## Question 2
-> Update the `Placeholder` component to fetch all stocks from our API
+> Update the `Placeholder` component to fetch all stocks from our API. Just `console.log` the results of the fetch request (we don't need to build component structure)
