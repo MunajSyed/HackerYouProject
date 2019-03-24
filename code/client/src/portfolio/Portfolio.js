@@ -44,7 +44,7 @@ class Portfolio extends PureComponent {
     console.log('this.props:', this.props);
     console.log('this.state:', this.state);
 
-    this.fetchData();
+    // this.fetchData();
 
     console.groupEnd();
   }
