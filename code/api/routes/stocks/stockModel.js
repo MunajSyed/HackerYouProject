@@ -6,24 +6,28 @@ const _ = require('lodash');
 let _store;
 
 const seedData = [
-  { userId: 'me', stockSymbol: 'SHOP' },
-  { userId: 'me', stockSymbol: 'DBX' },
-  { userId: 'me', stockSymbol: 'SBUX' },
+  { userId: 'me', stockSymbol: 'SHOP', name: 'Shopify Inc.' },
+  { userId: 'me', stockSymbol: 'DBX', name: 'Dropbox Inc.' },
+  { userId: 'me', stockSymbol: 'SBUX', name: 'Starbucks Corporation' },
 ];
 
 class Stock {
   constructor(data) {
-    const { id, userId, stockSymbol } = data;
+    const { id, userId, stockSymbol, name } = data;
     if (!userId) {
       throw new Error('missing.property:data.userId');
     }
     if (!stockSymbol) {
       throw new Error('missing.property:data.stockSymbol');
     }
+    if (!name) {
+      throw new Error('missing.property:data.name');
+    }
 
     this.id = id || uuid();
     this.userId = userId;
     this.stockSymbol = stockSymbol;
+    this.name = name;
   }
 
   async save() {
