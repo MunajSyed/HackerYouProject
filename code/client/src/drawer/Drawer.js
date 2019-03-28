@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 import {
   List,
   Drawer,
@@ -17,9 +16,9 @@ import {
   Home as HomeIcon,
 } from '@material-ui/icons';
 
-import { get, kebabCase } from 'lodash';
+import { get } from 'lodash';
 
-import AddPortfolioModel from './AddPortfolioModel';
+import AddPortfolioModal from './AddPortfolioModal';
 
 const drawerWidth = 240;
 
@@ -61,25 +60,42 @@ class PortfolioDrawer extends PureComponent {
     });
   }
 
+  handleFetchPortfolios = async () => {
+    console.group('PortfolioDrawer::handleFetchPortfolios');
+    const response = await fetch('/api/portfolios');
+    const portfolios = await response.json();
+    console.log('data:', portfolios.data);
+    console.groupEnd();
+
+    this.props.onFetchPortfolios(portfolios.data);
+  }
+
+  componentDidMount () {
+    console.group('PortfolioDrawer::componentDidMount');
+    console.log('this.props:', this.props);
+    console.groupEnd();
+
+    this.handleFetchPortfolios();
+  }
+
   render () {
     const {
       classes,
       portfolios,
       match,
-      onAddPortfolio,
     } = this.props;
     const portfolioRoute = get(match, 'params.portfolio');
 
-    // console.group('PortfolioDrawer::render');
-    // console.log('this.props:', this.props);
-    // console.log('portfolioRouteParam:', portfolioRoute);
-    // console.groupEnd();
+    console.group('PortfolioDrawer::render');
+    console.log('this.props:', this.props);
+    console.log('portfolioRouteParam:', portfolioRoute);
+    console.groupEnd();
 
     return (
       <>
-        <AddPortfolioModel
+        <AddPortfolioModal
           isOpen={this.state.addModelOpen}
-          onAddPortfolio={onAddPortfolio}
+          onAddPortfolio={this.props.onAddPortfolio}
           handleClose={this.handleModelClose}
         />
         <Drawer
@@ -117,24 +133,23 @@ class PortfolioDrawer extends PureComponent {
               </ListItemSecondaryAction>
             </ListItem>
             {
-              portfolios.map((text, index) => {
-                const path = kebabCase(text);
+              portfolios.map((portfolio, index) => {
+                const { id, name } = portfolio;
                 return (
                   <ListItem
                     button
-                    key={text}
+                    key={id}
                     className={classes.nested}
-                    selected={portfolioRoute === path}
+                    selected={portfolioRoute === id}
                     onClick={() => {
-                      console.log('click');
-                      this.props.history.push(`/portfolios/${path}`);
+                      this.props.history.push(`/portfolios/${id}`);
                     }}
                   >
                     <ListItemIcon>
                       <LineChartIcon color='primary' fontSize='small' />
                     </ListItemIcon>
                     <ListItemText
-                      primary={text}
+                      primary={name}
                     />
                   </ListItem>
                 );

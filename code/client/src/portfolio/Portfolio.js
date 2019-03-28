@@ -1,15 +1,17 @@
 import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Fab,
   List,
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import {
-  capitalize,
-  replace,
-} from 'lodash';
+  Add as AddIcon,
+} from '@material-ui/icons';
+
+import AddStockModal from './AddStockModal';
 
 const styles = (theme) => ({
   content: {
@@ -17,25 +19,40 @@ const styles = (theme) => ({
     padding: theme.spacing.unit * 3,
   },
   toolbar: theme.mixins.toolbar,
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
+  },
+  fabIcon: {
+    marginRight: theme.spacing.unit,
+  }
 });
 
 class Portfolio extends PureComponent {
   state = {
-    stocks: [
-      // { id: 1, symbol: 'SHOP', name: 'Shopify Inc.', close: '198.7500' },
-      // { id: 2, symbol: 'SBUX', name: 'Starbucks Corporation', close: '71.9600' },
-      // { id: 3, symbol: 'DBX', name: 'Dropbox Inc.', close: '21.7200' },
-    ],
+    addModelOpen: false,
   };
 
-  fetchData = async () => {
+  handleModelOpen = () => {
+    this.setState({
+      addModelOpen: true,
+    });
+  }
+
+  handleModelClose = () => {
+    this.setState({
+      addModelOpen: false,
+    });
+  }
+
+  fetchData = async (portfolioId) => {
     console.group('Portfolio::fetchData');
-
-    const response = await fetch('/api/portfolios');
-    const portfolios = await response.json();
-    console.log('data:', portfolios);
-
+    const response = await fetch(`/api/portfolios/${portfolioId}/stocks`);
+    const stocks = await response.json();
+    console.log('data:', stocks.data);
     console.groupEnd();
+    this.props.onFetchStocks(stocks.data, portfolioId);
   }
 
   async componentDidMount () {
@@ -43,10 +60,8 @@ class Portfolio extends PureComponent {
     console.group('Portfolio::componentDidMount');
     console.log('this.props:', this.props);
     console.log('this.state:', this.state);
-
-    // this.fetchData();
-
     console.groupEnd();
+    this.fetchData(this.props.portfolioId);
   }
 
   componentDidUpdate () {
@@ -57,13 +72,27 @@ class Portfolio extends PureComponent {
   }
 
   render () {
-    const { classes, name } = this.props;
-    const { stocks } = this.state;
+    const {
+      classes,
+      portfolio,
+      stocks,
+    } = this.props;
 
+    console.group('Portfolio::render');
+    console.log('this.props:', this.props);
+    console.groupEnd();
     return (
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <h1>{capitalize(replace(name, '-', ' '))}</h1>
+        <AddStockModal
+          isOpen={this.state.addModelOpen}
+          onAddStock={this.props.onAddStock}
+          handleClose={this.handleModelClose}
+        />
+        {
+          portfolio &&
+          <h1>{portfolio.name}</h1>
+        }
         <List>
           {
             stocks.map((stock, index) => {
@@ -71,7 +100,7 @@ class Portfolio extends PureComponent {
                 <ListItem key={stock.id}>
                   <ListItemText
                     primary={stock.name}
-                    secondary={stock.symbol}
+                    secondary={stock.stockSymbol}
                   />
                   <ListItemSecondaryAction>
                     <ListItemText
@@ -83,6 +112,15 @@ class Portfolio extends PureComponent {
             })
           }
         </List>
+        <Fab
+          variant='extended'
+          className={classes.fab}
+          color='primary'
+          onClick={this.handleModelOpen}
+        >
+          <AddIcon className={classes.fabIcon}/>
+          Add Stock
+        </Fab>
       </main>
     );
   }
