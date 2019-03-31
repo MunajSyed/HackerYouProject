@@ -15,4 +15,5 @@
 ## Resources
 
 ### Docs
-- [npm:mongodb](http://mongodb.github.io/node-mongodb-native/3.2/api/index.html)
+- [mongodb](http://mongodb.github.io/node-mongodb-native/3.2/api/index.html)
+- [mongoose:schema](https://mongoosejs.com/docs/guide.html)
