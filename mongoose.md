@@ -145,7 +145,7 @@ const { Schema } = mongoose;
 
 const { schema: commentSchema } = require('./comments');
 
-const postSchema = exprots.schema = new Schema({
+const postSchema = exports.schema = new Schema({
   title: String,
   body: {
     type: String,
