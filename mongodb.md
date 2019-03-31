@@ -25,7 +25,9 @@ _(TDB)_
 ## Using Compass To Explore a Database
 
 1. Run mongodb process in a terminal window
-> `mongod --config /usr/local/etc/mongod.conf`
+>**macOS**: `mongod --config /usr/local/etc/mongod.conf`
+
+> **windows**: `"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe"`
 
 2. Open Compass
 3. Connect to default `localhost:27017`
