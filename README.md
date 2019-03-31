@@ -1,1 +1,18 @@
-# con-ed-full-stack-student-notes-
+# Day 5
+
+## Outline
+- Install mongodb
+- Install Compass
+- Explore mongodb with Compass
+  - create collection
+  - insert documents
+  - update documents
+  > Connect to educational DB
+  - explore filtering
+- Explore mongodb with shell client
+- Explore mongodb with NodeJS
+
+## Resources
+
+### Docs
+- [npm:mongodb](http://mongodb.github.io/node-mongodb-native/3.2/api/index.html)
