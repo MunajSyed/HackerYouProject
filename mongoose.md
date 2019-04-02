@@ -1,7 +1,7 @@
 # Mongoose
 
 ## Why Do We Need This Tool?
-Mongoose acts as the interface between our express app and the database; uour **Database Access Layer (DAL)**. Out of the box, MongoDB doesn't enforce any structure on your documents and it doesn't give us tools to relate documents to each other.
+Mongoose acts as the interface between our express app and the database; your **Database Access Layer (DAL)**. Out of the box, MongoDB doesn't enforce any structure on your documents and it doesn't give us tools to relate documents to each other.
 
 ## What Is A Model?
 Simply a model is an **Entity**. A model is the interface we use to interact with each collection. You can think of it as the _class definition_ in object oriented programming, or a _recipe_ in terms of baking. It doubles as the destription of the **entity** as well as the access point for the collection.
